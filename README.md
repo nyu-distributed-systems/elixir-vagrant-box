@@ -14,6 +14,14 @@ figure out how.
   from the Internet, and then update it.
 
 * Once the previous step has succeeded, you can use `vagrant ssh` to
-  log into the VM. You will find Elixir (in particular `iex` and
-  `mix`) installed. The VM is a Debian based VM, and you can
+  log into the VM. You will find `git` and Elixir (in particular `iex`
+  and `mix`) installed. The VM is a Debian based VM, and you can
   add additional software using `apt`.
+
+# Connecting from VSCode
+
+You can follow the steps in this [blog post](https://medium.com/@lopezgand/connect-visual-studio-code-with-vagrant-in-your-local-machine-24903fb4a9de)
+to connect from VSCode if that is your editor of choice.
+
+When working with Elixir in VSCode we found the `vscode-elixir`
+plugin to be particularly useful.
