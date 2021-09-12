@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "debian/buster64"
+  config.vm.box = "debian/bullseye64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -55,7 +55,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
   #
   #   # Customize the amount of memory on the VM:
-     vb.memory = 512
+     vb.memory = 1024
      # Add more cores
      vb.cpus = 2
   end
@@ -68,10 +68,10 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
      # Install things
-     echo deb http://deb.debian.org/debian buster main contrib non-free > /etc/apt/sources.list
-     echo deb-src http://deb.debian.org/debian buster main contrib non-free >> /etc/apt/sources.list
-     echo deb http://security.debian.org/debian-security buster/updates main contrib non-free >> /etc/apt/sources.list
-     echo deb-src http://security.debian.org/debian-security buster/updates main contrib non-free >> /etc/apt/sources.list
+     echo deb http://deb.debian.org/debian bullseye main contrib non-free > /etc/apt/sources.list
+     echo deb-src http://deb.debian.org/debian bullseye main contrib non-free >> /etc/apt/sources.list
+     echo deb http://security.debian.org/debian-security bullseye-security main contrib non-free >> /etc/apt/sources.list
+     echo deb-src http://security.debian.org/debian-security bullseye-security main contrib non-free >> /etc/apt/sources.list
      echo force-confdef >> /etc/dpkg/dpkg.cfg
      echo force-confnew >> /etc/dpkg/dpkg.cfg
      export DEBIAN_FRONTEND=noninteractive
@@ -83,6 +83,8 @@ Vagrant.configure("2") do |config|
      apt-get -qy update
      apt-get -qy install esl-erlang
      apt-get -qy install elixir
+     apt-get install -qy erlang-os-mon erlang-parsetools erlang-tools
+     apt-get install -qy erlang-base-hipe  erlang-dev  erlang-eunit
      echo 'PATH="$PATH:$HOME/.local/bin"' >> /etc/profile
      update-alternatives --set editor /usr/bin/vim.nox
    SHELL
